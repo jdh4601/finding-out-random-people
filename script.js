@@ -46,9 +46,18 @@ const updateDOM = (proviedData = data) => {
   proviedData.forEach(item => {
     const element = document.createElement('li');
     element.classList.add('person');
-    element.innerHTML = `<strong>${item.name}</strong><span>${item.age}</span><span>${item.location}</span><span>${item.money}</span>`;
+    element.innerHTML = `<strong>${item.name}</strong><span>${
+      item.age
+    }</span><span>${item.location}</span><span>${FormatMoney(
+      item.money
+    )}</span>`;
     main.appendChild(element);
   });
+};
+
+// Format number as money
+const FormatMoney = number => {
+  return '$' + number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
 };
 
 addUserBtn.addEventListener('click', getRandomUser);
