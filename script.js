@@ -8,6 +8,8 @@ const calculateBtn = document.getElementById('calculate-wealth');
 let data = [];
 
 getRandomUser();
+getRandomUser();
+getRandomUser();
 
 // fetch random user and add money
 async function getRandomUser() {
@@ -60,4 +62,15 @@ const FormatMoney = number => {
   return '$' + number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
 };
 
+// Double money by using map method
+const doubleMoney = () => {
+  data = data.map(user => {
+    return { ...user, money: user.money * 2 };
+  });
+
+  updateDOM();
+};
+
+// Event listeners
 addUserBtn.addEventListener('click', getRandomUser);
+doubleBtn.addEventListener('click', doubleMoney);
