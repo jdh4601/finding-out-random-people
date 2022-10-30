@@ -11,6 +11,8 @@ let data = [];
 getRandomUser();
 getRandomUser();
 getRandomUser();
+getRandomUser();
+getRandomUser();
 
 // fetch random user and add money
 async function getRandomUser() {
@@ -73,7 +75,7 @@ const doubleMoney = () => {
 };
 
 // Sort money numbers
-// 내림차순
+// 1. 내림차순
 const sortDownMoney = () => {
   data.sort((a, b) => {
     return b.money - a.money;
@@ -81,7 +83,7 @@ const sortDownMoney = () => {
   updateDOM();
 };
 
-// 오름차순
+// 2. 오름차순
 const sortUpMoney = () => {
   data.sort((a, b) => {
     return a.money - b.money;
@@ -98,9 +100,39 @@ const filterMoney = () => {
   updateDOM();
 };
 
+// Calculate all wealthes using reduce
+const calculateAllWealth = () => {
+  let sum;
+  data.reduce((acc, cur) => {
+    return (sum = acc + cur.money);
+  }, 0);
+
+  const wealthEle = document.createElement('div');
+  wealthEle.innerHTML = `<h4>💰: ${FormatMoney(sum)}</h4>`;
+  wealthEle.classList.add('total');
+  main.appendChild(wealthEle);
+};
+
+// Throw error
+const loadData = url => {
+  return fetch(url).then(res => {
+    console.log(res.status);
+    if (res.status == 200) {
+      return res.json();
+    } else if (res.status == 404) {
+      return alert(new Error('404 Not Found'));
+    } else {
+      throw new Error(res.status);
+    }
+  });
+};
+
+loadData(`https://randomuser.me/api`);
+
 // Event listeners
 addUserBtn.addEventListener('click', getRandomUser);
 doubleBtn.addEventListener('click', doubleMoney);
 sortDownBtn.addEventListener('click', sortDownMoney);
 sortUpBtn.addEventListener('click', sortUpMoney);
 showBtn.addEventListener('click', filterMoney);
+calculateBtn.addEventListener('click', calculateAllWealth);

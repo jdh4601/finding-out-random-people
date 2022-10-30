@@ -103,3 +103,12 @@ h3 {
   margin-bottom: 10px;
   width: 100%;
 }
+
+.total {
+  text-align: right;
+  font-size: 30px;
+  border-top: 1px dashed black;
+  width: 100%;
+  margin: 20px 30px;
+  padding: 15px 0;
+}
