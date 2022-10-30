@@ -89,8 +89,18 @@ const sortUpMoney = () => {
   updateDOM();
 };
 
+// Filter only millionaires
+const filterMoney = () => {
+  data = data.filter(user => {
+    return user.money > 1000000;
+  });
+
+  updateDOM();
+};
+
 // Event listeners
 addUserBtn.addEventListener('click', getRandomUser);
 doubleBtn.addEventListener('click', doubleMoney);
 sortDownBtn.addEventListener('click', sortDownMoney);
 sortUpBtn.addEventListener('click', sortUpMoney);
+showBtn.addEventListener('click', filterMoney);
