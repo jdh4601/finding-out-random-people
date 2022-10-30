@@ -1,7 +1,8 @@
 const main = document.getElementById('main');
 const addUserBtn = document.getElementById('add-user');
 const doubleBtn = document.getElementById('double');
-const sortBtn = document.getElementById('sort');
+const sortDownBtn = document.getElementById('sort-down');
+const sortUpBtn = document.getElementById('sort-up');
 const showBtn = document.getElementById('show');
 const calculateBtn = document.getElementById('calculate-wealth');
 
@@ -71,6 +72,25 @@ const doubleMoney = () => {
   updateDOM();
 };
 
+// Sort money numbers
+// 내림차순
+const sortDownMoney = () => {
+  data.sort((a, b) => {
+    return b.money - a.money;
+  });
+  updateDOM();
+};
+
+// 오름차순
+const sortUpMoney = () => {
+  data.sort((a, b) => {
+    return a.money - b.money;
+  });
+  updateDOM();
+};
+
 // Event listeners
 addUserBtn.addEventListener('click', getRandomUser);
 doubleBtn.addEventListener('click', doubleMoney);
+sortDownBtn.addEventListener('click', sortDownMoney);
+sortUpBtn.addEventListener('click', sortUpMoney);
