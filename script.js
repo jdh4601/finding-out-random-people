@@ -103,6 +103,19 @@ const calculateAllWealth = () => {
   data = data.reduce((acc, cur) => acc + cur);
 };
 
+// Throw error
+const loadData = url => {
+  return fetch(url).then(res => {
+    if (res.status == 200) {
+      return res.json();
+    } else {
+      throw new Error(res.status);
+    }
+  });
+};
+
+loadData(`https://randomuser.me/api`);
+
 // Event listeners
 addUserBtn.addEventListener('click', getRandomUser);
 doubleBtn.addEventListener('click', doubleMoney);
