@@ -73,7 +73,7 @@ const doubleMoney = () => {
 };
 
 // Sort money numbers
-// 내림차순
+// 1. 내림차순
 const sortDownMoney = () => {
   data.sort((a, b) => {
     return b.money - a.money;
@@ -81,7 +81,7 @@ const sortDownMoney = () => {
   updateDOM();
 };
 
-// 오름차순
+// 2. 오름차순
 const sortUpMoney = () => {
   data.sort((a, b) => {
     return a.money - b.money;
@@ -98,9 +98,15 @@ const filterMoney = () => {
   updateDOM();
 };
 
+// Calculate all wealthes using reduce
+const calculateAllWealth = () => {
+  data = data.reduce((acc, cur) => acc + cur);
+};
+
 // Event listeners
 addUserBtn.addEventListener('click', getRandomUser);
 doubleBtn.addEventListener('click', doubleMoney);
 sortDownBtn.addEventListener('click', sortDownMoney);
 sortUpBtn.addEventListener('click', sortUpMoney);
 showBtn.addEventListener('click', filterMoney);
+calculateBtn.addEventListener('click', calculateAllWealth);
