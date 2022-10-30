@@ -11,6 +11,8 @@ let data = [];
 getRandomUser();
 getRandomUser();
 getRandomUser();
+getRandomUser();
+getRandomUser();
 
 // fetch random user and add money
 async function getRandomUser() {
@@ -100,14 +102,25 @@ const filterMoney = () => {
 
 // Calculate all wealthes using reduce
 const calculateAllWealth = () => {
-  data = data.reduce((acc, cur) => acc + cur);
+  let sum;
+  data.reduce((acc, cur) => {
+    return (sum = acc + cur.money);
+  }, 0);
+
+  const wealthEle = document.createElement('div');
+  wealthEle.innerHTML = `<h4>💰: ${FormatMoney(sum)}</h4>`;
+  wealthEle.classList.add('total');
+  main.appendChild(wealthEle);
 };
 
 // Throw error
 const loadData = url => {
   return fetch(url).then(res => {
+    console.log(res.status);
     if (res.status == 200) {
       return res.json();
+    } else if (res.status == 404) {
+      return alert(new Error('404 Not Found'));
     } else {
       throw new Error(res.status);
     }
